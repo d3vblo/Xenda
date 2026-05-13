@@ -7,7 +7,7 @@ import unicodedata
 app = Flask(__name__)
 app.secret_key = 'xenda123'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///xenda.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///xenda_v2.db'
 
 db = SQLAlchemy(app)
 
