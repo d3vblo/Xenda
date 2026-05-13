@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Login - Xenda
+    </title>
+
+</head>
+
+<body style="font-family: Arial; padding: 40px;">
+
+    <h1>
+        Xenda v1.0
+    </h1>
+
+    <h3>
+        Iniciar sesión
+    </h3>
+
+
+    {% if error %}
+
+        <p style="color:red;">
+            {{ error }}
+        </p>
+
+    {% endif %}
+
+
+    <form method="POST">
+
+        <label>
+            Correo Gmail
+        </label>
+
+        <br><br>
+
+        <input
+            type="email"
+            name="correo"
+            required
+            style="
+                width:300px;
+                padding:10px;
+            "
+        >
+
+        <br><br>
+
+
+        <label>
+            Contraseña
+        </label>
+
+        <br><br>
+
+        <input
+            type="password"
+            name="password"
+            required
+            style="
+                width:300px;
+                padding:10px;
+            "
+        >
+
+        <br><br>
+
+
+        <button
+            type="submit"
+            style="
+                padding:10px 20px;
+            "
+        >
+
+            Entrar
+
+        </button>
+
+    </form>
+
+</body>
+
+</html>
