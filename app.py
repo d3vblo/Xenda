@@ -218,29 +218,35 @@ def logout():
 # CREAR USUARIO
 # =========================================
 
-@app.route('/crear_usuario')
+@app.route('/crear_usuarios')
 
-def crear_usuario():
+def crear_usuarios():
 
-    existente = Usuario.query.filter_by(
-        correo='paolamateoponce@gmail.com'
-    ).first()
+    correos = [
 
-    if existente:
+        'diazedgar1701@gmail.com',
 
-        return 'Usuario ya existe'
+        'paolamateoponce@gmail.com'
 
-    usuario = Usuario(
+    ]
 
-        correo='paolamateoponce@gmail.com'
+    for correo in correos:
 
-    )
+        existente = Usuario.query.filter_by(
+            correo=correo
+        ).first()
 
-    db.session.add(usuario)
+        if not existente:
+
+            nuevo = Usuario(
+                correo=correo
+            )
+
+            db.session.add(nuevo)
 
     db.session.commit()
 
-    return 'Usuario creado correctamente'
+    return 'Usuarios creados correctamente'
 
 
 # =========================================
