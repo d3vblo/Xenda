@@ -176,7 +176,7 @@ def crear_usuario():
 
     usuario = Usuario(
 
-        correo='paolamateoponce@gmail.com'
+        correo='diazedgar1701@gmail.com'
 
     )
 
