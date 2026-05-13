@@ -223,7 +223,7 @@ def logout():
 def crear_usuario():
 
     existente = Usuario.query.filter_by(
-        correo='diazedgar1701@gmail.com'
+        correo='paolamateoponce@gmail.com'
     ).first()
 
     if existente:
@@ -232,7 +232,7 @@ def crear_usuario():
 
     usuario = Usuario(
 
-        correo='diazedgar1701@gmail.com'
+        correo='paolamateoponce@gmail.com'
 
     )
 
