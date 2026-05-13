@@ -1,9 +1,17 @@
-from flask import Flask, render_template, request, redirect, flash, jsonify
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    flash,
+    session,
+    jsonify
+)
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from flask import session
 import pandas as pd
 import unicodedata
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'RAND-GCAT_2026'
@@ -11,11 +19,13 @@ app.secret_key = 'RAND-GCAT_2026'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///xenda_v2.db'
 
 db = SQLAlchemy(app)
-usuarios = {
-    "brigada1@gmail.com": "xenda123",
-    "brigada2@gmail.com": "xenda456",
-    "admin@gmail.com": "admin123"
-}
+def registro_habilitado():
+    
+    ahora = datetime.now()
+
+    dia = ahora.day
+
+    return (10 <= dia <= 14) or (25 <= dia <= 29) 
 
 
 # =========================================
@@ -102,7 +112,7 @@ def periodo_abierto():
 
     dia = datetime.now().day
 
-    return 10 <= dia <= 29
+    return (10 <= dia <= 14) or (25 <= dia <= 29)
 
 
 # =========================================
@@ -141,11 +151,14 @@ def logout():
     return redirect('/login')
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    if not registro_habilitado():
+    
+        session.clear()
+
+        return render_template('cerrado.html')
+
     if 'usuario' not in session:
         return redirect('/login')
-
-    if not periodo_abierto():
-        return render_template('cerrado.html')
 
     entidades = sorted(
         catalogo['ENTIDAD_FEDERATIVA']
